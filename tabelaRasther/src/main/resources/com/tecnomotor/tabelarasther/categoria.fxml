@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="250.0" prefWidth="381.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tecnomotor.tabelarasther.controller.CategoriaController">
+   <children>
+      <Label layoutX="65.0" layoutY="48.0" text="Escolha uma das categorias">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="cbCategorias" layoutX="78.0" layoutY="125.0" prefHeight="25.0" prefWidth="206.0" />
+   </children>
+</AnchorPane>
