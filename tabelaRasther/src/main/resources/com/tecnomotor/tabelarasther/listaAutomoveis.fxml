@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="546.0" prefWidth="891.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tecnomotor.tabelarasther.controller.ListaAutomoveisController">
    <children>
-      <ListView fx:id="lvMontadora" layoutY="25.0" prefHeight="439.0" prefWidth="164.0" style="-fx-background-color: #D3D3D3;" />
+      <ListView fx:id="lvMontadora" layoutY="25.0" onMouseClicked="#handleMouseClick" prefHeight="439.0" prefWidth="164.0" style="-fx-background-color: #D3D3D3;" />
       <MenuBar prefHeight="25.0" prefWidth="891.0">
         <menus>
           <Menu mnemonicParsing="false" text="Arquivo" />
@@ -19,15 +19,15 @@
       </MenuBar>
       <Button fx:id="btnVoltar" layoutX="14.0" layoutY="486.0" mnemonicParsing="false" onAction="#voltarTelaAnterior" prefHeight="31.0" prefWidth="70.0" text="Voltar" />
       <Button fx:id="btnAplicar" layoutX="795.0" layoutY="486.0" mnemonicParsing="false" onAction="#mostrarAplicacao" prefHeight="31.0" prefWidth="70.0" text="Aplicar" />
-      <ListView fx:id="lvVeiculo" layoutX="164.0" layoutY="25.0" prefHeight="439.0" prefWidth="164.0" style="-fx-background-color: #FFE4E1;" />
+      <ListView fx:id="lvVeiculo" layoutX="164.0" layoutY="25.0" onMouseClicked="#handleMouseClick" prefHeight="439.0" prefWidth="164.0" style="-fx-background-color: #FFE4E1;" />
       <Label fx:id="lbMontadora" layoutX="294.0" layoutY="476.0" prefHeight="20.0" prefWidth="120.0" style="-fx-background-color: #FFE4E1;">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <ListView fx:id="lvMotorizacao" layoutX="328.0" layoutY="25.0" prefHeight="439.0" prefWidth="164.0" style="-fx-background-color: #D3D3D3;" />
-      <ListView fx:id="lvTipoSistema" layoutX="493.0" layoutY="25.0" prefHeight="439.0" prefWidth="164.0" style="-fx-background-color: #FFE4E1;" />
-      <ListView fx:id="lvSistema" layoutX="657.0" layoutY="25.0" prefHeight="439.0" prefWidth="164.0" style="-fx-background-color: #D3D3D3;" />
+      <ListView fx:id="lvMotorizacao" layoutX="328.0" layoutY="25.0" onMouseClicked="#handleMouseClick" prefHeight="439.0" prefWidth="164.0" style="-fx-background-color: #D3D3D3;" />
+      <ListView fx:id="lvTipoSistema" layoutX="493.0" layoutY="25.0" onMouseClicked="#handleMouseClick" prefHeight="439.0" prefWidth="164.0" style="-fx-background-color: #FFE4E1;" />
+      <ListView fx:id="lvSistema" layoutX="657.0" layoutY="25.0" onMouseClicked="#handleMouseClick" prefHeight="439.0" prefWidth="164.0" style="-fx-background-color: #D3D3D3;" />
       <Label fx:id="lbVeiculo" layoutX="481.0" layoutY="477.0" prefHeight="20.0" prefWidth="70.0" style="-fx-background-color: #FFE4E1;">
          <font>
             <Font size="14.0" />

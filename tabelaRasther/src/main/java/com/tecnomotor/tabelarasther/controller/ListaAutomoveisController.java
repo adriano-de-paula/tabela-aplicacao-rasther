@@ -1,11 +1,11 @@
 package com.tecnomotor.tabelarasther.controller;
 
 import com.tecnomotor.tabelarasther.MainApp;
+import com.tecnomotor.tabelarasther.constants.Constants;
 import com.tecnomotor.tabelarasther.model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -35,18 +35,88 @@ public class ListaAutomoveisController implements Initializable {
     private ObservableList<TipoSistema> listTipoSistemas;
     private ObservableList<Sistema> listSistemas;
 
-    //Método que foi herdado ao implementar o 'Initializable', nesse caso está carregando os dados das ListView's
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         carregarMontadoras();
-        carregarVeiculosAlfaRomeu();
-        carregarMotorizacao159();
-        carregarTipoSistemas();
-        carregarSistema();
     }
-/*
-    Aqui temos os métodos para carregar os dados das list's
- */
+    @FXML //Esse método faz toda a verificação das ListView's ao clicar nos dados das listas.
+    void handleMouseClick(MouseEvent event) {
+        if(lvMontadora.isFocused()) {
+            String selectMontadora = lvMontadora.getSelectionModel().getSelectedItem().toString();
+            lbMontadora.setText(selectMontadora);
+
+            if(Constants.ALFA_ROMEO.equals(selectMontadora)) {
+                carregarVeiculosAlfaRomeu();
+            }else {
+                limpaLista(lvVeiculo);
+                limpaLista(lvMotorizacao);
+                limpaLista(lvTipoSistema);
+                limpaLista(lvSistema);
+                lbVeiculo.setText("");
+                lbMotor.setText("");
+                lbTipoSistema.setText("");
+                lbSistema.setText("");
+            }
+        }
+        if(lvVeiculo.isFocused()){
+            String selectVeiculo = lvVeiculo.getSelectionModel().getSelectedItem().toString();
+            lbVeiculo.setText(selectVeiculo);
+
+            if(Constants.VEICULO_159.equals(selectVeiculo)) {
+                carregarMotorizacao159();
+            }else {
+                limpaLista(lvMotorizacao);
+                limpaLista(lvTipoSistema);
+                limpaLista(lvSistema);
+                lbMotor.setText("");
+                lbTipoSistema.setText("");
+                lbSistema.setText("");
+
+            }
+        }
+        if (lvMotorizacao.isFocused()){
+            String selectMotor = lvMotorizacao.getSelectionModel().getSelectedItem().toString();
+            lbMotor.setText(selectMotor);
+
+            if (Constants.MOTOR_1916V.equals(selectMotor)){
+                carregarTipoSistemas();
+            }else {
+                limpaLista(lvMotorizacao);
+                limpaLista(lvVeiculo);
+                lbVeiculo.setText("");
+                lbMotor.setText("");;
+            }
+        }
+        if (lvTipoSistema.isFocused()){
+            String selectTipoSistema = lvTipoSistema.getSelectionModel().getSelectedItem().toString();
+            lbTipoSistema.setText(selectTipoSistema);
+
+            if (Constants.ABS.equals(selectTipoSistema)){
+                carregarSistema();
+            }else {
+                limpaLista(lvSistema);
+                lbSistema.setText("");
+            }
+        }
+        if (lvSistema.isFocused()){
+            String selectSistema = lvSistema.getSelectionModel().getSelectedItem().toString();
+
+            if (Constants.ABS_DAMAR.equals(selectSistema)){
+                lbSistema.setText(selectSistema);
+            }else {
+                limpaLista(lvSistema);
+                lbSistema.setText("");
+            }
+        }
+    }
+
+    //Método para limpar as listas.
+    public void limpaLista(ListView<?> lista) {
+        lista.getItems().clear();
+    }
+
+    //Os métodos criados para criar e carregar os dados das listas.
     public void carregarMontadoras(){
         listMontadoras = FXCollections.observableArrayList();
 
@@ -109,31 +179,16 @@ public class ListaAutomoveisController implements Initializable {
                 new Veiculo(435,"166")
         );
 
-            /* Ao clicar em um dado da lista ele pega o nome do item selecionado e transfere
-             para um label embaixo da lista. */
-            lvMontadora.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    String selectMontadora = lvMontadora.getSelectionModel().getSelectedItem().toString();
-                    lvVeiculo.setItems(listVeiculos);
-                    lbMontadora.setText(selectMontadora);
-                }
-            });
+        lvVeiculo.setItems(listVeiculos);
     }
+
 
     public void carregarMotorizacao159(){
         listMotorizacao = FXCollections.observableArrayList();
 
         listMotorizacao.add(new Motor(22,"1.9-16V"));
 
-        lvVeiculo.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                String selectVeiculo = lvVeiculo.getSelectionModel().getSelectedItem().toString();
-                lvMotorizacao.setItems(listMotorizacao);
-                lbVeiculo.setText(selectVeiculo);
-            }
-        });
+        lvMotorizacao.setItems(listMotorizacao);
     }
 
     public void carregarTipoSistemas(){
@@ -150,14 +205,7 @@ public class ListaAutomoveisController implements Initializable {
                 new TipoSistema(13,"Painel")
         );
 
-        lvMotorizacao.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                String selectMotor = lvMotorizacao.getSelectionModel().getSelectedItem().toString();
-                lvTipoSistema.setItems(listTipoSistemas);
-                lbMotor.setText(selectMotor);
-            }
-        });
+        lvTipoSistema.setItems(listTipoSistemas);
     }
 
     public void carregarSistema(){
@@ -165,22 +213,8 @@ public class ListaAutomoveisController implements Initializable {
 
         listSistemas.add(new Sistema(1629,"ABS Damar"));
 
-        lvTipoSistema.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                String selectTipoSistema = lvTipoSistema.getSelectionModel().getSelectedItem().toString();
-                lvSistema.setItems(listSistemas);
-                lbTipoSistema.setText(selectTipoSistema);
-            }
-        });
+        lvSistema.setItems(listSistemas);
 
-        lvSistema.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                String selectSistema = lvSistema.getSelectionModel().getSelectedItem().toString();
-                lbSistema.setText(selectSistema);
-            }
-        });
     }
 
     /* Ação ao clicar no botão 'Aplicar' que mostra um alert de confirmação para aplicação do
@@ -215,4 +249,5 @@ public class ListaAutomoveisController implements Initializable {
     public void voltarTelaAnterior(ActionEvent event) throws IOException {
         MainApp.setRoot("categoria");
     }
+
 }

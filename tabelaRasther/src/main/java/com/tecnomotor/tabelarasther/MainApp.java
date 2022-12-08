@@ -23,6 +23,7 @@ public class MainApp extends Application {
         scene.setRoot(loadFXML(fxml));
     }
 
+    //Método criado para carregar o arquivo ".fxml"
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         Parent parent = fxmlLoader.load(MainApp.class.getResource(fxml +".fxml").openStream());
